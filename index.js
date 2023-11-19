@@ -1,6 +1,11 @@
-const { Client, GatewayIntentBits } = require('discord.js');
-const dotenv = require('dotenv');
-dotenv.config();
+import { Client, GatewayIntentBits } from 'discord.js';
+import 'dotenv/config';
+import express from 'express';
+
+const app = express();
+// Get port, or default to 3000
+app.use(express.json({ verify: VerifyDiscordRequest(process.env.PUBLIC_KEY) }));
+const PORT = process.env.PORT || 3000;
 
 const client = new Client({
   intents: [
